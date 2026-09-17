@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Isla Mercer — Model Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,ital@9..144,300..700,0..1&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5EEE4;
+    --ink: #211A17;
+    --ink-soft: #6B5F55;
+    --accent: #7A2331;
+    --accent-soft: #A8823C;
+    --line: #D9CFC0;
+    --tile-1: linear-gradient(160deg, #C9BBA8 0%, #8A776A 60%, #5C4C42 100%);
+    --tile-2: linear-gradient(160deg, #D8CFC0 0%, #A9958A 55%, #6E5A50 100%);
+    --tile-3: linear-gradient(160deg, #BFAE9C 0%, #7E6A5C 60%, #4A3B33 100%);
+    --tile-4: linear-gradient(160deg, #D2C3AE 0%, #93816F 55%, #5A483D 100%);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1B1512;
+      --ink: #F2E9DD;
+      --ink-soft: #B9AC9E;
+      --accent: #E0707A;
+      --accent-soft: #D4B15E;
+      --line: #3A2E28;
+      --tile-1: linear-gradient(160deg, #4A3D35 0%, #2C231E 60%, #171110 100%);
+      --tile-2: linear-gradient(160deg, #4F4038 0%, #322722 55%, #1A1412 100%);
+      --tile-3: linear-gradient(160deg, #443A32 0%, #29211C 60%, #150F0E 100%);
+      --tile-4: linear-gradient(160deg, #4C3F37 0%, #2E2420 55%, #17110F 100%);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #1B1512;
+    --ink: #F2E9DD;
+    --ink-soft: #B9AC9E;
+    --accent: #E0707A;
+    --accent-soft: #D4B15E;
+    --line: #3A2E28;
+    --tile-1: linear-gradient(160deg, #4A3D35 0%, #2C231E 60%, #171110 100%);
+    --tile-2: linear-gradient(160deg, #4F4038 0%, #322722 55%, #1A1412 100%);
+    --tile-3: linear-gradient(160deg, #443A32 0%, #29211C 60%, #150F0E 100%);
+    --tile-4: linear-gradient(160deg, #4C3F37 0%, #2E2420 55%, #17110F 100%);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 56px);
+  }
+
+  /* ---------- Nav ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  nav.wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+  }
+
+  .mark {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .navlinks {
+    display: flex;
+    gap: clamp(18px, 3vw, 36px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navlinks a {
+    text-decoration: none;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.25s ease;
+  }
+
+  .navlinks a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0%;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .navlinks a:hover { color: var(--ink); }
+  .navlinks a:hover::after { width: 100%; }
+
+  @media (max-width: 640px) {
+    .navlinks { display: none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+    padding-top: clamp(48px, 8vw, 88px);
+    padding-bottom: clamp(48px, 8vw, 88px);
+  }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-portrait { order: -1; }
+  }
+
+  .eyebrow {
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 18px;
+  }
+
+  h1.name {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(3rem, 8vw, 5.6rem);
+    line-height: 0.98;
+    margin: 0 0 22px 0;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) 0.15s forwards;
+  }
+
+  .tagline {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    max-width: 30ch;
+    margin: 0 0 34px 0;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) 0.35s forwards;
+  }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-top: 1px solid var(--line);
+    max-width: 460px;
+  }
+
+  .stat {
+    flex: 1 1 33%;
+    padding: 14px 14px 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .stat:nth-child(3n) { padding-right: 0; }
+
+  .stat .label {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    margin-bottom: 4px;
+  }
+
+  .stat .value {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+  }
+
+  .hero-portrait {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: 2px;
+    background: var(--tile-1);
+    overflow: hidden;
+  }
+
+  .hero-portrait::after {
+    content: "Your photo here";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 18px;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.75);
+    font-family: 'Work Sans', sans-serif;
+  }
+
+  /* ---------- Section heading ---------- */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: clamp(40px, 6vw, 64px);
+    margin-bottom: 28px;
+    border-top: 1px solid var(--line);
+  }
+
+  .section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    margin: 22px 0 0 0;
+  }
+
+  .section-note {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin: 22px 0 0 0;
+  }
+
+  /* ---------- Filter tabs ---------- */
+  .tabs {
+    display: flex;
+    gap: clamp(16px, 3vw, 30px);
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    background: none;
+    border: none;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    cursor: pointer;
+    padding: 0 0 6px 0;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .tab.active,
+  .tab:hover {
+    color: var(--ink);
+    border-color: var(--accent);
+  }
+
+  /* ---------- Gallery ---------- */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 90px;
+    gap: 14px;
+    padding-bottom: clamp(40px, 6vw, 72px);
+  }
+
+  .tile {
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .tile .tint { position: absolute; inset: 0; }
+  .tile.t1 .tint { background: var(--tile-1); }
+  .tile.t2 .tint { background: var(--tile-2); }
+  .tile.t3 .tint { background: var(--tile-3); }
+  .tile.t4 .tint { background: var(--tile-4); }
+
+  .tile .cat-label {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    color: rgba(255,255,255,0.9);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  .tile:hover .cat-label { opacity: 1; transform: translateY(0); }
+  .tile:hover .tint { filter: brightness(1.06); }
+  .tile .tint { transition: filter 0.25s ease; }
+
+  .g1 { grid-column: span 2; grid-row: span 4; }
+  .g2 { grid-column: span 2; grid-row: span 3; }
+  .g3 { grid-column: span 2; grid-row: span 4; }
+  .g4 { grid-column: span 3; grid-row: span 3; }
+  .g5 { grid-column: span 3; grid-row: span 3; }
+  .g6 { grid-column: span 2; grid-row: span 3; }
+  .g7 { grid-column: span 2; grid-row: span 4; }
+  .g8 { grid-column: span 2; grid-row: span 3; }
+
+  @media (max-width: 860px) {
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .g1, .g2, .g3, .g4, .g5, .g6, .g7, .g8 { grid-column: span 1; }
+  }
+
+  .tile.hidden { display: none; }
+
+  /* ---------- About ---------- */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 5vw, 60px);
+    padding-bottom: clamp(48px, 7vw, 80px);
+  }
+
+  @media (max-width: 780px) {
+    .about { grid-template-columns: 1fr; }
+  }
+
+  .about p {
+    color: var(--ink-soft);
+    font-size: 1rem;
+    max-width: 52ch;
+  }
+
+  .measure-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .measure-table tr {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .measure-table td {
+    padding: 11px 0;
+    font-size: 0.9rem;
+  }
+
+  .measure-table td:first-child {
+    color: var(--ink-soft);
+  }
+
+  .measure-table td:last-child {
+    text-align: right;
+    font-family: 'Fraunces', serif;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: clamp(36px, 6vw, 56px) 0;
+  }
+
+  .footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+  }
+
+  .footer-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    margin: 0 0 10px 0;
+  }
+
+  .footer-sub {
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    margin: 0;
+  }
+
+  .social-row {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .social-row a {
+    text-decoration: none;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .social-row a:hover {
+    color: var(--ink);
+    border-color: var(--accent-soft);
+  }
+
+  .fine-print {
+    margin-top: 30px;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    opacity: 0.7;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    h1.name, .tagline { animation: none; opacity: 1; transform: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a class="mark" href="#top">Isla Mercer</a>
+    <ul class="navlinks">
+      <li><a href="#work">Portfolio</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="wrap">
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Editorial &amp; Commercial Model</p>
+        <h1 class="name">Isla<br>Mercer</h1>
+        <p class="tagline">Based in New York, working across editorial, commercial and beauty. Available for travel.</p>
+        <div class="stat-row">
+          <div class="stat"><span class="label">Height</span><span class="value">5'9"</span></div>
+          <div class="stat"><span class="label">Bust</span><span class="value">32"</span></div>
+          <div class="stat"><span class="label">Waist</span><span class="value">24"</span></div>
+          <div class="stat"><span class="label">Hips</span><span class="value">34"</span></div>
+          <div class="stat"><span class="label">Shoe</span><span class="value">US 8</span></div>
+          <div class="stat"><span class="label">Hair / Eyes</span><span class="value">Brunette / Hazel</span></div>
+        </div>
+      </div>
+      <div class="hero-portrait" aria-hidden="true"></div>
+    </section>
+
+    <section id="work">
+      <div class="section-head">
+        <h2>Portfolio</h2>
+        <p class="section-note">Sample layout — swap each tile for your own image.</p>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-filter="all">All</button>
+        <button class="tab" data-filter="editorial">Editorial</button>
+        <button class="tab" data-filter="commercial">Commercial</button>
+        <button class="tab" data-filter="beauty">Beauty</button>
+        <button class="tab" data-filter="movement">Movement</button>
+      </div>
+
+      <div class="gallery">
+        <div class="tile g1 t1" data-cat="editorial"><div class="tint"></div><span class="cat-label">Editorial 01</span></div>
+        <div class="tile g2 t2" data-cat="commercial"><div class="tint"></div><span class="cat-label">Commercial 01</span></div>
+        <div class="tile g3 t3" data-cat="beauty"><div class="tint"></div><span class="cat-label">Beauty 01</span></div>
+        <div class="tile g4 t4" data-cat="editorial"><div class="tint"></div><span class="cat-label">Editorial 02</span></div>
+        <div class="tile g5 t2" data-cat="movement"><div class="tint"></div><span class="cat-label">Movement 01</span></div>
+        <div class="tile g6 t1" data-cat="commercial"><div class="tint"></div><span class="cat-label">Commercial 02</span></div>
+        <div class="tile g7 t3" data-cat="beauty"><div class="tint"></div><span class="cat-label">Beauty 02</span></div>
+        <div class="tile g8 t4" data-cat="editorial"><div class="tint"></div><span class="cat-label">Editorial 03</span></div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div>
+        <div class="section-head" style="border-top: none; padding-top: 0;">
+          <h2>About</h2>
+        </div>
+        <p>Five years of experience across editorial features, ad campaigns and beauty bookings. Comfortable in front of still and video, with a background in movement-based work that carries into every set. Open to travel for the right project, and quick to adapt between concepts on the same day.</p>
+        <p>Represented by [Agency Name] — full comp card available on request.</p>
+      </div>
+      <div>
+        <div class="section-head" style="border-top: none; padding-top: 0;">
+          <h2 style="font-size: 1.4rem;">Measurements</h2>
+        </div>
+        <table class="measure-table">
+          <tr><td>Height</td><td>5'9" / 175 cm</td></tr>
+          <tr><td>Bust – Waist – Hips</td><td>32 – 24 – 34</td></tr>
+          <tr><td>Dress size</td><td>US 4</td></tr>
+          <tr><td>Shoe size</td><td>US 8</td></tr>
+          <tr><td>Hair</td><td>Brunette</td></tr>
+          <tr><td>Eyes</td><td>Hazel</td></tr>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+  <footer id="contact">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-title">Let's work together</p>
+          <p class="footer-sub">booking@islamercer.com — New York, NY</p>
+        </div>
+        <ul class="social-row">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">TikTok</a></li>
+          <li><a href="#">Portfolio PDF</a></li>
+        </ul>
+      </div>
+      <p class="fine-print">Sample portfolio template — replace name, stats, copy and image tiles with your own.</p>
+    </div>
+  </footer>
+</main>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const tiles = document.querySelectorAll('.tile');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.dataset.filter;
+      tiles.forEach(tile => {
+        if (filter === 'all' || tile.dataset.cat === filter) {
+          tile.classList.remove('hidden');
+        } else {
+          tile.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
