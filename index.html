@@ -1,101 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Good Night Ray 🌙</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffe8f0">
+<title>11:11 — A Little Universe for Ray</title>
 <style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; min-height: 100vh; overflow: hidden; display: grid; place-items: center;
-    color: #fff; font-family: 'Quicksand', sans-serif;
-    background: radial-gradient(ellipse at 50% 110%, #4d367c 0%, #211d4d 48%, #0b102c 100%);
-  }
-  .stars, .fireworks { position: fixed; inset: 0; pointer-events: none; }
-  .stars { background-image: radial-gradient(2px 2px at 12% 18%, #fff 60%, transparent), radial-gradient(1px 1px at 76% 14%, #fff 60%, transparent), radial-gradient(2px 2px at 88% 62%, #ffd9f2 60%, transparent), radial-gradient(1px 1px at 32% 74%, #fff 60%, transparent), radial-gradient(2px 2px at 58% 35%, #fff 60%, transparent), radial-gradient(1px 1px at 18% 85%, #ffd9f2 60%, transparent); opacity: .8; }
-  .moon { position: fixed; top: 8%; right: 12%; font-size: clamp(42px, 7vw, 76px); filter: drop-shadow(0 0 18px #ffe8a8); animation: float 4s ease-in-out infinite; }
-  .card {
-    position: relative; z-index: 2; width: min(88vw, 440px); padding: 44px 28px 38px; text-align: center;
-    border: 1px solid rgba(255,255,255,.3); border-radius: 32px;
-    background: linear-gradient(145deg, rgba(255,255,255,.19), rgba(255,255,255,.07));
-    box-shadow: 0 20px 70px rgba(0,0,0,.35), inset 0 1px rgba(255,255,255,.25);
-    backdrop-filter: blur(14px); animation: pop .9s cubic-bezier(.2,1.4,.4,1) both;
-    max-height: calc(100vh - 32px); overflow-y: auto;
-  }
-  .top-emoji { font-size: 42px; margin-bottom: 8px; }
-  h1 { font: 800 clamp(36px, 9vw, 52px)/1.1 'Baloo 2', cursive; margin: 0 0 12px; color: #ffe1f2; text-shadow: 0 4px 18px rgba(255,154,211,.3); }
-  p { font-size: 16px; line-height: 1.7; margin: 0 auto 22px; color: #f5eaff; max-width: 310px; }
-  .poem { max-width: 340px; margin: 0 auto 22px; color: #fff0fa; font-size: 14px; line-height: 1.85; }
-  .poem p { margin: 0 auto 12px; font-size: 14px; line-height: 1.85; }
-  .goodnight { font-size: 29px; margin: 12px 0 18px; letter-spacing: 5px; }
-  #sweet { min-height: 24px; transition: opacity .25s, transform .25s; }
-  #sweet.show { animation: hugPop .55s ease both; color: #ffe0f1; font-weight: 700; }
-  .heart { position: fixed; z-index: 5; pointer-events: none; font-size: 24px; animation: heartRise 1.8s ease-out forwards; }
-  @keyframes hugPop { 0% { opacity: 0; transform: scale(.7); } 70% { transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
-  @keyframes heartRise { from { opacity: 0; transform: translateY(0) scale(.6) rotate(-10deg); } 15% { opacity: 1; } to { opacity: 0; transform: translateY(-170px) scale(1.35) rotate(18deg); } }
-  button { border: 0; border-radius: 999px; padding: 13px 25px; color: #53335f; background: #ffe2f1; font: 700 15px 'Quicksand', sans-serif; cursor: pointer; box-shadow: 0 7px 20px rgba(255,190,226,.25); transition: transform .2s, background .2s; }
-  button:hover { transform: translateY(-3px) scale(1.04); background: #fff1f8; }
-  .tiny { margin-top: 18px; font-size: 12px; color: #d9c9f2; }
-  .burst { position: absolute; width: 7px; height: 7px; border-radius: 50%; background: var(--c); left: var(--x); top: var(--y); box-shadow: 0 0 8px 2px var(--c); animation: explode 2.8s ease-out infinite; animation-delay: var(--d); }
-  .burst::before, .burst::after { content: ''; position: absolute; inset: -18px; border: 2px dotted var(--c); border-radius: 50%; opacity: 0; animation: ring 2.8s ease-out infinite; animation-delay: var(--d); }
-  .burst::after { inset: -31px; animation-delay: calc(var(--d) + .18s); }
-  .spark { position: absolute; left: var(--x); top: var(--y); color: var(--c); font-size: 22px; animation: twinkle 2s ease-in-out infinite; animation-delay: var(--d); }
-  @keyframes pop { from { opacity: 0; transform: scale(.72) translateY(25px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-  @keyframes float { 50% { transform: translateY(-12px) rotate(8deg); } }
-  @keyframes explode { 0%,100% { transform: scale(.2); opacity: 0; } 18% { transform: scale(1.2); opacity: 1; } 55% { transform: scale(.7); opacity: .5; } }
-  @keyframes ring { 0%,10% { transform: scale(.1); opacity: 0; } 25% { opacity: .9; } 75%,100% { transform: scale(1.7); opacity: 0; } }
-  @keyframes twinkle { 0%,100% { opacity: .25; transform: scale(.7) rotate(0); } 50% { opacity: 1; transform: scale(1.25) rotate(25deg); } }
-  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Sacramento&display=swap');
+:root{--pink:#f7a9c4;--rose:#e978a2;--ink:#60465b;--muted:#96788e;--cream:#fffaf8;--lav:#e9ddff;--line:#f1d5e1}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;z-index:-1;background-image:radial-gradient(#e9a9c2 .7px,transparent .7px);background-size:17px 17px}
+button{font:inherit;cursor:pointer;border:0}.wrap{max-width:940px;margin:auto;padding:0 22px}
+nav{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:13px max(22px,calc((100vw - 940px)/2));background:#fffaf8df;backdrop-filter:blur(12px);border-bottom:1px solid #f4e1e8}
+.brand{font-family:'Sacramento',cursive;font-size:27px;color:var(--rose)}.navright{display:flex;gap:9px;align-items:center}
+.pill,.btn{border-radius:999px;padding:11px 17px;background:#fff;border:1px solid var(--line);color:var(--ink);box-shadow:0 5px 16px #d88ba51a;transition:.2s}
+.btn.primary{background:linear-gradient(135deg,#f6a9c4,#d9b8f3);border:0;color:white;font-weight:700}.btn:hover,.pill:hover{transform:translateY(-2px);box-shadow:0 9px 20px #d88ba533}
+section{padding:76px 0;position:relative}.hero{min-height:88vh;display:grid;place-items:center;text-align:center;overflow:hidden;padding:65px 0}
+.hero-card{max-width:720px;background:#ffffffc9;border:1px solid #fff;border-radius:34px;padding:clamp(28px,6vw,62px);box-shadow:0 25px 70px #d58ba51c;position:relative}
+.eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:11px;color:var(--rose);font-weight:700}
+h1,h2{font-family:'Playfair Display',serif;font-weight:500}h1{font-size:clamp(43px,8vw,78px);line-height:1.04;margin:16px 0;color:#80566f}h1 em,h2 em{color:var(--rose);font-weight:500}
+h2{font-size:clamp(32px,5vw,48px);margin:0 0 12px}.lead{font-size:16px;line-height:1.8;color:var(--muted);max-width:560px;margin:0 auto 24px}
+.script{font-family:'Sacramento',cursive;color:var(--rose);font-size:35px}.hero-orb{position:absolute;border-radius:50%;filter:blur(1px);opacity:.65;animation:float 7s ease-in-out infinite}.orb1{width:160px;height:160px;background:#fbd3e2;left:5%;top:12%}.orb2{width:110px;height:110px;background:#e8dcff;right:8%;bottom:13%;animation-delay:-3s}
+@keyframes float{50%{transform:translateY(-18px) rotate(8deg)}}.spark{position:absolute;color:#e8a2bf;animation:twinkle 2s infinite alternate}@keyframes twinkle{to{opacity:.25;transform:scale(.7)}}
+.center{text-align:center}.section-intro{max-width:600px;margin:0 auto 35px;text-align:center}.paper{background:#fff;border:1px solid #f5dce6;border-radius:24px;padding:26px;box-shadow:0 12px 35px #d58ba514}
+.wishbox{max-width:610px;margin:auto;text-align:center;background:linear-gradient(145deg,#fff,#fff4f8);border:1px solid #f3dce7;border-radius:30px;padding:35px 24px}
+.clock{font-family:'Playfair Display',serif;font-size:clamp(64px,12vw,100px);color:#d978a1;letter-spacing:.04em;text-shadow:0 5px 25px #f3c5d7}
+.envelopes{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.env{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px 12px;min-height:145px;color:var(--ink);box-shadow:0 10px 25px #d58ba514;transition:.25s}.env:hover{transform:translateY(-6px) rotate(-1deg)}.env .emoji{font-size:35px;display:block;margin-bottom:9px}.env small{color:var(--muted)}
+.constellation{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:680px;margin:28px auto}.star{width:115px;height:115px;border-radius:50%;background:linear-gradient(145deg,#fff,#f7eafa);border:1px solid #eadcf2;color:#896a91;box-shadow:0 8px 25px #b69ac31c;transition:.2s}.star:hover{transform:scale(1.08);background:#f4e7ff}
+.adventure-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.adventure{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 8px;color:var(--ink);font-size:14px;transition:.2s}.adventure span{display:block;font-size:30px;margin-bottom:8px}.adventure.selected{background:#ffe8f0;border-color:#e99bb9;transform:translateY(-4px)}
+.note{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;line-height:1.7;color:#80566f}
+.footer{text-align:center;padding:70px 20px 90px;background:linear-gradient(180deg,#fffaf8,#ffedf4)}.big-heart{font-size:58px;animation:beat 1.4s infinite}@keyframes beat{50%{transform:scale(1.18)}}
+.modal{position:fixed;inset:0;background:#4e354d88;display:none;place-items:center;padding:20px;z-index:30}.modal.show{display:grid}.modalbox{max-width:460px;width:100%;background:#fffafc;border-radius:26px;padding:30px;text-align:center;box-shadow:0 25px 80px #38203955;position:relative}.modalbox h3{font-family:'Playfair Display',serif;font-size:28px;font-weight:500;color:#80566f;margin:8px}.modalbox p{color:var(--muted);line-height:1.8}.close{position:absolute;right:15px;top:12px;background:none;font-size:23px;color:#a77b91}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;background:#80566f;color:white;padding:12px 19px;border-radius:30px;z-index:40;transition:.3s;pointer-events:none;text-align:center;max-width:90%}.toast.show{opacity:1;transform:translate(-50%,0)}
+.float-heart{position:fixed;bottom:-30px;z-index:20;pointer-events:none;animation:rise 4s linear forwards}@keyframes rise{to{transform:translateY(-110vh) rotate(35deg);opacity:0}}
+.progress{height:4px;background:#f5e4eb;position:fixed;top:0;left:0;width:100%;z-index:50}.progress span{display:block;height:100%;width:0;background:#e978a2}
+.hidden-message{display:none;margin:22px auto 0;max-width:520px}.hidden-message.show{display:block;animation:fade .8s}@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+footer p{color:var(--muted)}.tiny{font-size:12px;color:#aa8c9d}
+@media(max-width:650px){section{padding:58px 0}.envelopes{grid-template-columns:1fr}.env{min-height:auto;padding:17px}.adventure-grid{grid-template-columns:repeat(2,1fr)}.navright .pill{padding:9px 12px;font-size:12px}.hero{min-height:82vh}.hero-card{padding:34px 22px}}
 </style>
 </head>
 <body>
-  <div class="stars"></div><div class="moon">🌙</div>
-  <div class="fireworks" aria-hidden="true">
-    <i class="burst" style="--x:13%;--y:28%;--c:#ffb7df;--d:0s"></i>
-    <i class="burst" style="--x:82%;--y:24%;--c:#ffe28a;--d:.7s"></i>
-    <i class="burst" style="--x:76%;--y:78%;--c:#a9e9ff;--d:1.3s"></i>
-    <i class="burst" style="--x:20%;--y:75%;--c:#d7b2ff;--d:1.8s"></i>
-    <i class="burst" style="--x:48%;--y:12%;--c:#ffcf9e;--d:2.2s"></i>
-    <i class="spark" style="--x:27%;--y:17%;--c:#fff1a8;--d:.3s">✦</i>
-    <i class="spark" style="--x:91%;--y:48%;--c:#ffc5e7;--d:1s">✧</i>
-    <i class="spark" style="--x:8%;--y:55%;--c:#bceeff;--d:1.5s">✦</i>
-    <i class="spark" style="--x:62%;--y:88%;--c:#ffe4a6;--d:.8s">✧</i>
+<div class="progress"><span id="progress"></span></div>
+<nav><div class="brand">a little something ♡</div><div class="navright"><button class="pill" id="musicBtn" aria-label="Toggle music">♫ Play music</button><a class="pill" href="#wish" style="text-decoration:none">11:11 ✨</a></div></nav>
+
+<main>
+<section class="hero">
+ <div class="hero-orb orb1"></div><div class="hero-orb orb2"></div>
+ <span class="spark" style="top:17%;left:22%">✦</span><span class="spark" style="top:24%;right:21%;animation-delay:.8s">✧</span><span class="spark" style="bottom:18%;left:18%;animation-delay:1s">✦</span>
+ <div class="hero-card wrap">
+  <div class="eyebrow">a tiny 11:11 surprise</div>
+  <h1>For you,<br><em>Ray.</em></h1>
+  <p class="lead">A little corner of the internet, filled with tiny wishes, soft thoughts and a few things I wanted you to find.</p>
+  <div class="script">made with a smile, just for you</div>
+  <p style="margin:25px 0 0"><button class="btn primary" onclick="document.querySelector('#wish').scrollIntoView({behavior:'smooth'})">Step into our little world ✨</button></p>
+ </div>
+</section>
+
+<section id="wish">
+ <div class="wrap">
+  <div class="section-intro"><div class="eyebrow">chapter one · the magic hour</div><h2>Make a <em>wish</em> 🌙</h2><p class="lead">They say 11:11 is the perfect moment to wish for something. Take a breath, close your eyes for a second, and think of yours.</p></div>
+  <div class="wishbox"><div class="clock">11:11</div><p class="lead" style="margin:4px auto 20px">A little moment. A thousand possibilities.</p><button class="btn primary" id="wishBtn">I've made my wish ✨</button><div id="wishReveal" class="hidden-message"><p class="note">I hope one of your wishes has a little space for all the places we haven't been, all the laughs we haven't laughed, and all the lovely ordinary days still waiting for us.</p><span class="script">some wishes are better shared ♡</span></div></div>
+ </div>
+</section>
+
+<section id="letters" style="background:#fff4f8">
+ <div class="wrap">
+  <div class="section-intro"><div class="eyebrow">chapter two · little notes</div><h2>Open when you <em>feel like it</em> 💌</h2><p class="lead">Three tiny envelopes. No big speeches — just a few things worth keeping.</p></div>
+  <div class="envelopes">
+   <button class="env" onclick="openNote(0)"><span class="emoji">💌</span><strong>A little reminder</strong><br><small>tap to open</small></button>
+   <button class="env" onclick="openNote(1)"><span class="emoji">🌷</span><strong>A tiny promise</strong><br><small>tap to open</small></button>
+   <button class="env" onclick="openNote(2)"><span class="emoji">🧸</span><strong>A secret thought</strong><br><small>tap to open</small></button>
   </div>
-  <main class="card">
-    <div class="top-emoji">🐻‍❄️💗🌙</div>
-    <h1>Good Night Ray</h1>
-    <p>May your dreams be soft, your sleep be peaceful, and tomorrow bring you a million little reasons to smile. ✨</p>
-    <div class="poem">
-      <p>Through every road and every season,<br>I'll be right here, your forever person. 💗<br>Let's chase the sunsets, wander the skies,<br>and collect a thousand memories side by side. 🌍</p>
-      <p>And someday, may our love quietly show<br>the world how beautifully two hearts can grow.<br>Not just a story, but a lifetime true,<br>a little more magic in all that we do. 🌷</p>
-      <p><em>Forever sounds beautiful when it's a journey with you, Ray.</em> ✨</p>
-    </div>
-    <div class="goodnight">🌷 💤 ⭐</div>
-    <button id="hugButton" type="button">Send a hug 🤗</button>
-    <div class="tiny" id="sweet" aria-live="polite">A little night-time magic, just for you ♡</div>
-  </main>
+ </div>
+</section>
+
+<section id="universe">
+ <div class="wrap">
+  <div class="section-intro"><div class="eyebrow">chapter three · our universe</div><h2>Pick a <em>star</em> ✨</h2><p class="lead">Every star holds a little daydream. Tap each one and see what the universe has tucked away.</p></div>
+  <div class="constellation">
+   <button class="star" onclick="star(0)">⭐<br><small>little escapes</small></button>
+   <button class="star" onclick="star(1)">🌟<br><small>slow mornings</small></button>
+   <button class="star" onclick="star(2)">✨<br><small>sunset plans</small></button>
+   <button class="star" onclick="star(3)">💫<br><small>the silly bits</small></button>
+   <button class="star" onclick="star(4)">🌙<br><small>future stories</small></button>
+  </div>
+  <p class="tiny center" id="starCount">0 of 5 stars discovered</p>
+  <div class="paper center hidden-message" id="starReward"><p class="note">Maybe the best part isn't knowing exactly where life takes us. Maybe it's having someone beside you to turn the unexpected into a story worth telling.</p><div class="script">to more chapters ♡</div></div>
+ </div>
+</section>
+
+<section id="adventure" style="background:#fff4f8">
+ <div class="wrap">
+  <div class="section-intro"><div class="eyebrow">chapter four · choose our daydream</div><h2>Where should we <em>disappear</em> to?</h2><p class="lead">Pick the kind of day you'd want to save in your memory forever.</p></div>
+  <div class="adventure-grid">
+   <button class="adventure" onclick="choose(this,'A beach, a sunset, and absolutely nowhere else to be. 🌅')"><span>🏖️</span>Beach sunset</button>
+   <button class="adventure" onclick="choose(this,'A winding road, favourite songs, and one more stop just because. 🚗')"><span>🚗</span>Midnight drive</button>
+   <button class="adventure" onclick="choose(this,'A mountain view, warm drinks, and the world moving a little slower. 🏔️')"><span>🏔️</span>Mountain escape</button>
+   <button class="adventure" onclick="choose(this,'A blanket under the stars, making up names for constellations. 🌌')"><span>🌌</span>Stargazing</button>
+  </div>
+  <div class="paper center hidden-message" id="adventureResult"><p class="note" id="adventureText"></p><span class="script">sounds like a date ♡</span></div>
+ </div>
+</section>
+
+<section id="secret">
+ <div class="wrap center">
+  <div class="section-intro"><div class="eyebrow">one last little thing</div><h2>There's a <em>secret</em> here...</h2><p class="lead">Some things are easier to show than to say. Tap the little heart and see.</p></div>
+  <button class="btn primary" style="font-size:20px;padding:18px 27px" id="secretBtn">♡</button>
+  <div class="hidden-message" id="secretReveal"><p class="note">In a universe full of people, places and possibilities, there's one person who makes the ordinary feel a little more magical. I hope you never forget how special you are to me, Ray.</p><span class="script">you are someone's favourite plot twist ♡</span></div>
+ </div>
+</section>
+
+<footer class="footer">
+ <div class="eyebrow">chapter five · always a wish away</div>
+ <div class="big-heart">💗</div>
+ <h2>Here's to more <em>11:11s</em>.</h2>
+ <p class="lead">More little adventures. More laughing at things that aren't even funny. More moments that become favourite memories without us noticing.</p>
+ <p class="note">If I get to make a wish every day,<br>I'll keep wishing for more days like these —<br>with you somewhere in every one.</p>
+ <div class="script">Happy 11.11, Ray ♡</div>
+ <p style="margin-top:28px"><button class="btn primary" onclick="celebrate()">Make one more wish ✨</button> <button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">Start again ↺</button></p>
+ <p class="tiny">a little website, with a lot of heart.</p>
+</footer>
+</main>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="modalbox"><button class="close" onclick="closeModal()">×</button><div style="font-size:38px" id="modalEmoji">💗</div><h3 id="modalTitle">A little note</h3><p id="modalText"></p><button class="btn primary" onclick="closeModal()">Keep this close ♡</button></div></div>
+<div class="toast" id="toast"></div>
+
 <script>
-  const hugButton = document.getElementById('hugButton');
-  const sweet = document.getElementById('sweet');
-  hugButton.addEventListener('click', () => {
-    sweet.textContent = 'A big, warm hug for you, Ray! 🫂💗 I’m right here, cheering for us and all the adventures ahead. ✨';
-    sweet.classList.remove('show');
-    void sweet.offsetWidth;
-    sweet.classList.add('show');
-    for (let i = 0; i < 18; i++) {
-      const heart = document.createElement('span');
-      heart.className = 'heart';
-      heart.textContent = ['💗', '💕', '💖', '💞', '❤️'][i % 5];
-      heart.style.left = (12 + Math.random() * 76) + 'vw';
-      heart.style.top = (55 + Math.random() * 30) + 'vh';
-      heart.style.animationDelay = (Math.random() * .45) + 's';
-      document.body.appendChild(heart);
-      heart.addEventListener('animationend', () => heart.remove());
-    }
-  });
+const notes=[
+ ["A little reminder","You make ordinary moments feel like the best part of the day. I hope today gives you a hundred reasons to smile — and if it doesn't, I hope this little corner gives you one. 🌸","🌸"],
+ ["A tiny promise","I can't promise every day will be perfect. But I can promise to keep choosing patience, laughter, little adventures and the kind of care that shows up in the small things. 🤍","🤍"],
+ ["A secret thought","Sometimes I catch myself looking forward to things that haven't even happened yet — places we might go, stories we'll tell, and memories we haven't made. You're in those thoughts more often than you know. 🧸","🧸"]
+];
+const stars=[
+ ["Little escapes","New places, wrong turns, roadside snacks and laughing until we forget where we were going. 🗺️"],
+ ["Slow mornings","A lazy morning, something warm to drink, and no reason to rush the day. ☕"],
+ ["Sunset plans","Finding a pretty sky and pretending we came all that way just to watch it change colours. 🌅"],
+ ["The silly bits","Inside jokes that make no sense to anyone else, terrible dancing and laughing at absolutely nothing. 😄"],
+ ["Future stories","A collection of small moments that one day we'll look back on and call the good old days. 📖"]
+];
+let discovered=new Set(),wishCount=0;
+function openNote(i){showModal(notes[i][0],notes[i][1],notes[i][2])}
+function star(i){if(discovered.has(i)){toast("You've already found this little daydream 💫");return}discovered.add(i);showModal(stars[i][0],stars[i][1],"⭐");document.getElementById('starCount').textContent=discovered.size+" of 5 stars discovered";if(discovered.size===5)document.getElementById('starReward').classList.add('show')}
+function showModal(title,text,emoji){document.getElementById('modalTitle').textContent=title;document.getElementById('modalText').textContent=text;document.getElementById('modalEmoji').textContent=emoji;document.getElementById('modal').classList.add('show')}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function choose(el,msg){document.querySelectorAll('.adventure').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');document.getElementById('adventureText').textContent=msg;document.getElementById('adventureResult').classList.add('show')}
+function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500)}
+function burst(n=18){for(let i=0;i<n;i++){let e=document.createElement('div');e.className='float-heart';e.textContent=['💗','💕','✨','🌸','💖'][Math.floor(Math.random()*5)];e.style.left=Math.random()*100+'vw';e.style.fontSize=(16+Math.random()*20)+'px';e.style.animationDuration=(3+Math.random()*3)+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),6500)}}
+document.getElementById('wishBtn').onclick=()=>{wishCount++;document.getElementById('wishReveal').classList.add('show');burst(22);toast("Wish sent to the universe ✨")};
+document.getElementById('secretBtn').onclick=()=>{document.getElementById('secretReveal').classList.add('show');burst(14);document.getElementById('secretBtn').textContent='💗'};
+function celebrate(){burst(45);toast("One more wish, just for you, Ray 💗")}
+window.addEventListener('scroll',()=>{let h=document.documentElement.scrollHeight-innerHeight;document.getElementById('progress').style.width=(h?scrollY/h*100:0)+'%'});
+document.addEventListener('click',e=>{if(e.target.closest('button')){let s=document.createElement('span');s.textContent='✧';s.style.cssText=`position:fixed;left:${e.clientX}px;top:${e.clientY}px;color:#e978a2;pointer-events:none;z-index:60;font-size:22px;animation:twinkle .7s forwards`;document.body.appendChild(s);setTimeout(()=>s.remove(),750)}});
+
+// Original, gentle synthesized melody. Audio starts only after the visitor presses Play.
+let audioCtx=null, musicTimer=null, musicOn=false, noteIndex=0;
+const melody=[523.25,659.25,783.99,659.25,587.33,698.46,783.99,698.46,523.25,587.33,659.25,587.33,493.88,587.33,659.25,587.33];
+function playNote(freq,duration=.42){if(!audioCtx)return;let now=audioCtx.currentTime;let osc=audioCtx.createOscillator(),gain=audioCtx.createGain();osc.type='sine';osc.frequency.value=freq;gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(.055,now+.04);gain.gain.exponentialRampToValueAtTime(.0001,now+duration);osc.connect(gain);gain.connect(audioCtx.destination);osc.start(now);osc.stop(now+duration+.03)}
+function toggleMusic(){const btn=document.getElementById('musicBtn');if(!musicOn){audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();audioCtx.resume();musicOn=true;btn.textContent='♫ Pause music';playNote(melody[noteIndex++%melody.length]);musicTimer=setInterval(()=>playNote(melody[noteIndex++%melody.length]),520)}else{musicOn=false;clearInterval(musicTimer);btn.textContent='♫ Play music'}}
+document.getElementById('musicBtn').addEventListener('click',toggleMusic);
 </script>
 </body>
 </html>
