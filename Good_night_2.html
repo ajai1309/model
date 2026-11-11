@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Good Night Ray 🌙</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; overflow: hidden; display: grid; place-items: center;
+    color: #fff; font-family: 'Quicksand', sans-serif;
+    background: radial-gradient(ellipse at 50% 110%, #4d367c 0%, #211d4d 48%, #0b102c 100%);
+  }
+  .stars, .fireworks { position: fixed; inset: 0; pointer-events: none; }
+  .stars { background-image: radial-gradient(2px 2px at 12% 18%, #fff 60%, transparent), radial-gradient(1px 1px at 76% 14%, #fff 60%, transparent), radial-gradient(2px 2px at 88% 62%, #ffd9f2 60%, transparent), radial-gradient(1px 1px at 32% 74%, #fff 60%, transparent), radial-gradient(2px 2px at 58% 35%, #fff 60%, transparent), radial-gradient(1px 1px at 18% 85%, #ffd9f2 60%, transparent); opacity: .8; }
+  .moon { position: fixed; top: 8%; right: 12%; font-size: clamp(42px, 7vw, 76px); filter: drop-shadow(0 0 18px #ffe8a8); animation: float 4s ease-in-out infinite; }
+  .card {
+    position: relative; z-index: 2; width: min(88vw, 440px); padding: 44px 28px 38px; text-align: center;
+    border: 1px solid rgba(255,255,255,.3); border-radius: 32px;
+    background: linear-gradient(145deg, rgba(255,255,255,.19), rgba(255,255,255,.07));
+    box-shadow: 0 20px 70px rgba(0,0,0,.35), inset 0 1px rgba(255,255,255,.25);
+    backdrop-filter: blur(14px); animation: pop .9s cubic-bezier(.2,1.4,.4,1) both;
+    max-height: calc(100vh - 32px); overflow-y: auto;
+  }
+  .top-emoji { font-size: 42px; margin-bottom: 8px; }
+  h1 { font: 800 clamp(36px, 9vw, 52px)/1.1 'Baloo 2', cursive; margin: 0 0 12px; color: #ffe1f2; text-shadow: 0 4px 18px rgba(255,154,211,.3); }
+  p { font-size: 16px; line-height: 1.7; margin: 0 auto 22px; color: #f5eaff; max-width: 310px; }
+  .poem { max-width: 340px; margin: 0 auto 22px; color: #fff0fa; font-size: 14px; line-height: 1.85; }
+  .poem p { margin: 0 auto 12px; font-size: 14px; line-height: 1.85; }
+  .goodnight { font-size: 29px; margin: 12px 0 18px; letter-spacing: 5px; }
+  #sweet { min-height: 24px; transition: opacity .25s, transform .25s; }
+  #sweet.show { animation: hugPop .55s ease both; color: #ffe0f1; font-weight: 700; }
+  .heart { position: fixed; z-index: 5; pointer-events: none; font-size: 24px; animation: heartRise 1.8s ease-out forwards; }
+  @keyframes hugPop { 0% { opacity: 0; transform: scale(.7); } 70% { transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
+  @keyframes heartRise { from { opacity: 0; transform: translateY(0) scale(.6) rotate(-10deg); } 15% { opacity: 1; } to { opacity: 0; transform: translateY(-170px) scale(1.35) rotate(18deg); } }
+  button { border: 0; border-radius: 999px; padding: 13px 25px; color: #53335f; background: #ffe2f1; font: 700 15px 'Quicksand', sans-serif; cursor: pointer; box-shadow: 0 7px 20px rgba(255,190,226,.25); transition: transform .2s, background .2s; }
+  button:hover { transform: translateY(-3px) scale(1.04); background: #fff1f8; }
+  .tiny { margin-top: 18px; font-size: 12px; color: #d9c9f2; }
+  .burst { position: absolute; width: 7px; height: 7px; border-radius: 50%; background: var(--c); left: var(--x); top: var(--y); box-shadow: 0 0 8px 2px var(--c); animation: explode 2.8s ease-out infinite; animation-delay: var(--d); }
+  .burst::before, .burst::after { content: ''; position: absolute; inset: -18px; border: 2px dotted var(--c); border-radius: 50%; opacity: 0; animation: ring 2.8s ease-out infinite; animation-delay: var(--d); }
+  .burst::after { inset: -31px; animation-delay: calc(var(--d) + .18s); }
+  .spark { position: absolute; left: var(--x); top: var(--y); color: var(--c); font-size: 22px; animation: twinkle 2s ease-in-out infinite; animation-delay: var(--d); }
+  @keyframes pop { from { opacity: 0; transform: scale(.72) translateY(25px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+  @keyframes float { 50% { transform: translateY(-12px) rotate(8deg); } }
+  @keyframes explode { 0%,100% { transform: scale(.2); opacity: 0; } 18% { transform: scale(1.2); opacity: 1; } 55% { transform: scale(.7); opacity: .5; } }
+  @keyframes ring { 0%,10% { transform: scale(.1); opacity: 0; } 25% { opacity: .9; } 75%,100% { transform: scale(1.7); opacity: 0; } }
+  @keyframes twinkle { 0%,100% { opacity: .25; transform: scale(.7) rotate(0); } 50% { opacity: 1; transform: scale(1.25) rotate(25deg); } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
+</style>
+</head>
+<body>
+  <div class="stars"></div><div class="moon">🌙</div>
+  <div class="fireworks" aria-hidden="true">
+    <i class="burst" style="--x:13%;--y:28%;--c:#ffb7df;--d:0s"></i>
+    <i class="burst" style="--x:82%;--y:24%;--c:#ffe28a;--d:.7s"></i>
+    <i class="burst" style="--x:76%;--y:78%;--c:#a9e9ff;--d:1.3s"></i>
+    <i class="burst" style="--x:20%;--y:75%;--c:#d7b2ff;--d:1.8s"></i>
+    <i class="burst" style="--x:48%;--y:12%;--c:#ffcf9e;--d:2.2s"></i>
+    <i class="spark" style="--x:27%;--y:17%;--c:#fff1a8;--d:.3s">✦</i>
+    <i class="spark" style="--x:91%;--y:48%;--c:#ffc5e7;--d:1s">✧</i>
+    <i class="spark" style="--x:8%;--y:55%;--c:#bceeff;--d:1.5s">✦</i>
+    <i class="spark" style="--x:62%;--y:88%;--c:#ffe4a6;--d:.8s">✧</i>
+  </div>
+  <main class="card">
+    <div class="top-emoji">🐻‍❄️💗🌙</div>
+    <h1>Good Night Ray</h1>
+    <p>May your dreams be soft, your sleep be peaceful, and tomorrow bring you a million little reasons to smile. ✨</p>
+    <div class="poem">
+      <p>Through every road and every season,<br>I'll be right here, your forever person. 💗<br>Let's chase the sunsets, wander the skies,<br>and collect a thousand memories side by side. 🌍</p>
+      <p>And someday, may our love quietly show<br>the world how beautifully two hearts can grow.<br>Not just a story, but a lifetime true,<br>a little more magic in all that we do. 🌷</p>
+      <p><em>Forever sounds beautiful when it's a journey with you, Ray.</em> ✨</p>
+    </div>
+    <div class="goodnight">🌷 💤 ⭐</div>
+    <button id="hugButton" type="button">Send a hug 🤗</button>
+    <div class="tiny" id="sweet" aria-live="polite">A little night-time magic, just for you ♡</div>
+  </main>
+<script>
+  const hugButton = document.getElementById('hugButton');
+  const sweet = document.getElementById('sweet');
+  hugButton.addEventListener('click', () => {
+    sweet.textContent = 'A big, warm hug for you, Ray! 🫂💗 I’m right here, cheering for us and all the adventures ahead. ✨';
+    sweet.classList.remove('show');
+    void sweet.offsetWidth;
+    sweet.classList.add('show');
+    for (let i = 0; i < 18; i++) {
+      const heart = document.createElement('span');
+      heart.className = 'heart';
+      heart.textContent = ['💗', '💕', '💖', '💞', '❤️'][i % 5];
+      heart.style.left = (12 + Math.random() * 76) + 'vw';
+      heart.style.top = (55 + Math.random() * 30) + 'vh';
+      heart.style.animationDelay = (Math.random() * .45) + 's';
+      document.body.appendChild(heart);
+      heart.addEventListener('animationend', () => heart.remove());
+    }
+  });
+</script>
+</body>
+</html>
